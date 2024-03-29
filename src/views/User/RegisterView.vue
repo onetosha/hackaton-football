@@ -51,6 +51,9 @@
               </v-btn>
             </v-form>
           </v-card-text>
+          <v-card-actions class="justify-center">
+            <router-link to="/" class="link">Уже есть аккаунт?</router-link>
+          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
@@ -120,5 +123,13 @@ export default {
 
 .v-btn {
   margin-top: 16px;
+}
+.link {
+  color: #4CAF50;
+  font-size: 14px;
+}
+
+.link:hover {
+  text-decoration: underline;
 }
 </style>

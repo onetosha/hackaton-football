@@ -13,8 +13,8 @@ const routes = [
     component: LoginView
   },
   {
-    path: '/register',
-    name: 'register',
+    path: '/registration',
+    name: 'registration',
     component: RegisterView
   },
   {

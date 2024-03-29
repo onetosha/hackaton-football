@@ -35,7 +35,7 @@
           </v-card-text>
 
           <v-card-actions class="justify-center">
-            <router-link to="/register" class="register-link">Регистрация</router-link>
+            <router-link to="/registration" class="link">Регистрация</router-link>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -104,12 +104,12 @@ export default {
   margin-top: 16px;
 }
 
-.register-link {
+.link {
   color: #4CAF50;
   font-size: 14px;
 }
 
-.register-link:hover {
+.link:hover {
   text-decoration: underline;
 }
 </style>
