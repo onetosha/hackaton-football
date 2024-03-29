@@ -68,6 +68,7 @@ export default {
         })
         .then(response => {
           const token = response.data.token;
+          localStorage.userName = response.data.username;
           localStorage.setItem('token', token);
           console.log('Успешный вход', response.data);
         })

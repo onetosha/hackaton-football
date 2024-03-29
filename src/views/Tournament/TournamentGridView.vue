@@ -1,24 +1,40 @@
 <template>
     <div class="bodybox">
       <div class="card">
-        <div class="header">
-          Турнирная сетка (ID: {{ tourId }})
-        </div>
+        <div class="header">Турнирная сетка (ID: {{ tourId }})</div>
         <div class="tournament">
           <div class="round" v-for="(round, index) in rounds" :key="index">
-            <div class="stage">
-              {{ getStageLabel(index) }}
-            </div>
-            <div class="match" v-for="match in round" :key="match.id">
+            <div class="stage">{{ getStageLabel(index) }}</div>
+            <div class="match" v-for="match in round" :key="match.match_id">
               <div class="team">
-                <input type="text" v-model="match.team1" :placeholder="'Команда ' + (match.id * 2 - 1)" />
+                <input
+                  type="text"
+                  v-model="match.user1_goals"
+                  :placeholder="'Команда ' + match.user1_id"
+                  :readonly="match.is_end"
+                />
               </div>
               <div class="team">
-                <input type="text" v-model="match.team2" :placeholder="'Команда ' + (match.id * 2)" />
+                <input
+                  type="text"
+                  v-model="match.user2_goals"
+                  :placeholder="'Команда ' + match.user2_id"
+                  :readonly="match.is_end"
+                />
               </div>
               <div class="result">
-                <input type="text" v-model="match.result1" placeholder="Счет команды 1" />
-                <input type="text" v-model="match.result2" placeholder="Счет команды 2" />
+                <input
+                  type="text"
+                  v-model="match.user1_goals"
+                  :placeholder="match.user1_goals"
+                  :readonly="match.is_end"
+                />
+                <input
+                  type="text"
+                  v-model="match.user2_goals"
+                  :placeholder="match.user2_goals"
+                  :readonly="match.is_end"
+                />
               </div>
             </div>
           </div>
@@ -28,6 +44,8 @@
   </template>
   
   <script>
+  import axios from 'axios';
+  
   export default {
     props: ['tourId'],
     data() {
@@ -36,29 +54,26 @@
       };
     },
     mounted() {
-      this.generateTournament();
+      this.getMatches();
     },
     methods: {
-      generateTournament() {
-        const teams = ['Team A', 'Team B', 'Team C', 'Team D', 'Team E', 'Team F', 'Team G', 'Team H'];
-        const numRounds = Math.ceil(Math.log2(teams.length));
-  
+      getMatches() {
+        const url = `/api/tour/get_matches?tourId=${this.tourId}`;
+        axios
+          .get(url)
+          .then((response) => {
+            const matches = response.data.matches.sort((a, b) => a.match_id - b.match_id);
+            this.generateTournament(matches);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      },
+      generateTournament(matches) {
+        const numRounds = 3; // Замените на нужное количество раундов
         for (let round = 0; round < numRounds; round++) {
-          const matches = [];
-  
-          for (let i = 0; i < teams.length / Math.pow(2, round + 1); i++) {
-            const match = {
-              id: i + 1,
-              team1: teams[i * 2] || '',
-              team2: teams[i * 2 + 1] || '',
-              result1: '',
-              result2: '',
-            };
-  
-            matches.push(match);
-          }
-  
-          this.rounds.push(matches);
+          const roundMatches = matches.filter((match) => match.enum_stage === this.getStageLabel(round));
+          this.rounds.push(roundMatches);
         }
       },
       getStageLabel(index) {
