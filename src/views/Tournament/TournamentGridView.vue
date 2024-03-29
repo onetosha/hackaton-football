@@ -80,10 +80,11 @@
   .card {
     width: 1000px;
     height: 80%;
-    margin-top: 5%;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    background-color: #f5f5f5;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     border: 1px solid gray;
     padding: 20px;
   }
