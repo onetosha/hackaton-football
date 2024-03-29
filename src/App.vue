@@ -51,16 +51,15 @@ export default {
 }
   
 body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.6);
-    /* overflow-x: hidden; горизонтальная прокрутка */
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  /* overflow-x: hidden; горизонтальная прокрутка */
 }
-
 
 </style>
