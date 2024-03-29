@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
-    <v-layout align-center justify-center>
-      <v-flex xs12 sm8 md4>
+    <v-row align="center">
+      <v-col cols="12" sm="8" md="4">
         <v-card class="card">
           <v-card-title class="justify-center">
             <h1 class="title">Вход</h1>
@@ -10,9 +10,10 @@
           <v-card-text>
             <v-form @submit.prevent="login">
               <v-text-field
-                v-model="username"
-                label="Никнейм"
+                v-model="email"
+                label="Email"
                 required
+                :rules="emailRules"
               ></v-text-field>
 
               <v-text-field
@@ -37,8 +38,8 @@
             <router-link to="/register" class="register-link">Регистрация</router-link>
           </v-card-actions>
         </v-card>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -48,23 +49,26 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      username: '',
+      email: '',
       password: '',
-      loading: false
+      loading: false,  
+      emailRules: [
+        value => !!value || 'Email является обязательным полем',
+        value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) || 'Неправильный формат email'
+      ]
     };
   },
   methods: {
     login() {
       this.loading = true;
-      const response = axios
-        .post('/api/login', {
-          username: this.username,
+      axios
+        .get('/api/login', {
+          email: this.email,
           password: this.password
         })
         .then(response => {
           // Обработка успешного входа
           console.log('Успешный вход', response.data);
-          
         })
         .catch(error => {
           // Обработка ошибки входа
@@ -81,7 +85,6 @@ export default {
 <style scoped>
 .card {
   width: 400px;
-  margin-left: auto;
   margin-right: auto;
   background-color: #f5f5f5;
   border-radius: 8px;

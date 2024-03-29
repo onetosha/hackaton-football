@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
-    <v-layout align-center justify-center>
-      <v-flex xs12 sm8 md4>
+    <v-row align="center">
+      <v-col cols="12" sm="8" md="4">
         <v-card class="card">
           <v-card-title class="justify-center">
             <h1 class="title">Регистрация</h1>
@@ -10,7 +10,7 @@
           <v-card-text>
             <v-form @submit.prevent="register">
               <v-text-field
-                v-model="nickname"
+                v-model="username"
                 label="Никнейм"
                 required
               ></v-text-field>
@@ -52,8 +52,8 @@
             </v-form>
           </v-card-text>
         </v-card>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -63,7 +63,7 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      nickname: '',
+      username: '',
       firstName: '',
       lastName: '',
       email: '',
@@ -76,11 +76,11 @@ export default {
       this.loading = true;
       axios
         .post('/api/registration', {
-          nickname: this.nickname,
-          firstName: this.firstName,
-          lastName: this.lastName,
           email: this.email,
-          password: this.password
+          username: this.username,
+          password: this.password,
+          firstName: this.firstName,
+          lastName: this.lastName
         })
         .then(response => {
           // Обработка успешной регистрации

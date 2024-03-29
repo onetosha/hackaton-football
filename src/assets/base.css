@@ -13,6 +13,4 @@ body {
     /* overflow-x: hidden; горизонтальная прокрутка */
   }
   
-.app-container {
-    min-height: 350px;
-  }
+

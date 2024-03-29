@@ -7,6 +7,7 @@
       :loading="loading"
       :search="search"
       item-value="tournamentName"
+    
       @update:options="loadItems"
     ></v-data-table-server>
   </template>
