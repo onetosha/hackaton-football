@@ -3,7 +3,7 @@
     <div class="page-background"></div>
 
     <v-app-bar app>
-      <v-toolbar-title>Организация турниров по настольному футболу</v-toolbar-title>
+      <v-toolbar-title>ФутBIG Настольный Футбол</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn text to="/tournaments">Турниры</v-btn>
@@ -88,6 +88,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
+  font-family: 'Handjet', sans-serif;
 }
 
 </style>

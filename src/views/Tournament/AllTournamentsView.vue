@@ -12,7 +12,6 @@
               <v-text-field v-model="tournamentName" label="Название турнира"></v-text-field>
               <v-btn color="success" type="submit">Создать турнир</v-btn>
             </v-form>
-            
             <v-data-table
               :headers="headers"
               :items="tournaments"
@@ -124,5 +123,9 @@ export default {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   border: 1px solid gray;
   padding: 20px;
+}
+
+.v-data-table {
+  margin-top: 20px;
 }
 </style>
