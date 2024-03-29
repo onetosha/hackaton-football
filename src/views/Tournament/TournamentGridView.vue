@@ -6,6 +6,9 @@
         </div>
         <div class="tournament">
           <div class="round" v-for="(round, index) in rounds" :key="index">
+            <div class="stage">
+              {{ getStageLabel(index) }}
+            </div>
             <div class="match" v-for="match in round" :key="match.id">
               <div class="team">
                 <input type="text" v-model="match.team1" :placeholder="'Команда ' + (match.id * 2 - 1)" />
@@ -57,6 +60,10 @@
           this.rounds.push(matches);
         }
       },
+      getStageLabel(index) {
+        const stages = ['1/4', '1/2', 'Финал'];
+        return stages[index] || '';
+      },
     },
   };
   </script>
@@ -101,6 +108,11 @@
     gap: 20px;
   }
   
+  .stage {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
   .match {
     display: flex;
     flex-direction: column;
@@ -119,7 +131,6 @@
     font-size: 14px;
   }
   
-
   .round:first-child {
     margin-right: 30px;
   }

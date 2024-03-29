@@ -6,9 +6,8 @@
       <v-toolbar-title>Организация турниров по настольному футболу</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn text to="/">Главная</v-btn>
         <v-btn text to="/tournaments">Турниры</v-btn>
-        <v-btn text to="/login">Войти</v-btn>
+        <v-btn text to="/">Войти</v-btn>
       </v-toolbar-items>
     </v-app-bar>
 
@@ -51,8 +50,24 @@ export default {
   background-position: center;
 }
 
-.v-main {
-  padding-top: 64px;
+a 
+{
+    cursor: pointer;
+  }
+  
+body {
+    margin: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* overflow-x: hidden; горизонтальная прокрутка */
+  }
 
-}
+.v-main {
+    background-color: transparent;
+  }
+
+
 </style>

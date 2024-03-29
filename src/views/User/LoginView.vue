@@ -62,16 +62,14 @@ export default {
     login() {
       this.loading = true;
       axios
-        .get('/api/login', {
+        .post('/api/login', {
           email: this.email,
           password: this.password
         })
         .then(response => {
-          // Обработка успешного входа
           console.log('Успешный вход', response.data);
         })
         .catch(error => {
-          // Обработка ошибки входа
           console.error('Ошибка входа', error);
         })
         .finally(() => {

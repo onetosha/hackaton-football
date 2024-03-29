@@ -83,13 +83,10 @@ export default {
           lastName: this.lastName
         })
         .then(response => {
-          // Обработка успешной регистрации
           console.log('Успешная регистрация', response.data);
-          // Перенаправление на страницу /login
           this.$router.push('/login');
         })
         .catch(error => {
-          // Обработка ошибки регистрации
           console.error('Ошибка регистрации', error);
         })
         .finally(() => {
