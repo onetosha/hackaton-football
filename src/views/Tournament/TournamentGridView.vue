@@ -2,7 +2,7 @@
     <div class="bodybox">
       <div class="card">
         <div class="header">
-          Турнирная сетка
+          Турнирная сетка (ID: {{ tourId }})
         </div>
         <div class="tournament">
           <div class="round" v-for="(round, index) in rounds" :key="index">
@@ -29,6 +29,7 @@
   
   <script>
   export default {
+    props: ['tourId'],
     data() {
       return {
         rounds: [],

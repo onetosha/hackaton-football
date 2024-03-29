@@ -78,7 +78,7 @@
           });
       },
       goToTournament(tourId) {
-        // Действия при нажатии кнопки "Перейти к турниру"
+        this.$router.push({ name: 'grid', query: { tourId } });
         console.log('Переход к турниру с ID:', tourId);
       },
     },

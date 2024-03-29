@@ -50,10 +50,9 @@ export default {
   background-position: center;
 }
 
-a 
-{
+a {
     cursor: pointer;
-  }
+}
   
 body {
     margin: 20px;
@@ -63,11 +62,7 @@ body {
     justify-content: center;
     align-items: center;
     /* overflow-x: hidden; горизонтальная прокрутка */
-  }
-
-.v-main {
-    background-color: transparent;
-  }
+}
 
 
 </style>

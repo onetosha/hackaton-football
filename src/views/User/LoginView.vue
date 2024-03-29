@@ -67,6 +67,8 @@ export default {
           password: this.password
         })
         .then(response => {
+          const token = response.data.token;
+          localStorage.setItem('token', token);
           console.log('Успешный вход', response.data);
         })
         .catch(error => {
