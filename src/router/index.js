@@ -1,11 +1,37 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import LoginView from '../views/User/LoginView.vue'
+import RegisterView from '../views/User/RegisterView.vue'
+
+import TournamentGridView from '@/views/Tournament/TournamentGridView.vue'
+import AllTournamentsView from '@/views/Tournament/AllTournamentsView.vue'
+
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: RegisterView
+  },
+  {
+    path: '/grid',
+    name: 'grid',
+    component: TournamentGridView
+  },
+  {
+    path: '/tournaments',
+    name: 'tournaments',
+    component: AllTournamentsView
   },
   {
     path: '/about',
