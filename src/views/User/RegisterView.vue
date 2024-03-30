@@ -87,7 +87,7 @@ export default {
         })
         .then(response => {
           console.log('Успешная регистрация', response.data);
-          this.$router.push('/login');
+          this.$router.push('/');
         })
         .catch(error => {
           console.error('Ошибка регистрации', error);

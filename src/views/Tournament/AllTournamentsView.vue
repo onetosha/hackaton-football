@@ -22,9 +22,9 @@
             >
               <template v-slot:item="{ item }">
                 <tr>
+                  <td>{{ item.tour_id}}</td>
                   <td>{{ item.name }}</td>
                   <td>{{ item.count_users }}</td>
-                  <td>{{ item.owner_id }}</td>
                   <td>{{ item.is_end ? 'Закончен' : 'В процессе' }}</td>
                   <td>
                     <v-btn
@@ -51,9 +51,9 @@ export default {
   data() {
     return {
       headers: [
+        { title: 'Код турнира', value: 'tour_id' },
         { title: 'Название', value: 'name' },
         { title: 'Пользователи', value: 'count_users' },
-        { title: 'Код создателя', value: 'owner_id' },
         { title: 'Статус', value: 'is_end' },
         { title: '', value: '' }, // Пустой заголовок для кнопки
       ],
@@ -69,11 +69,16 @@ export default {
   },
   methods: {
     getTournaments() {
+      console.log(localStorage.token);
       this.loading = true;
       axios
-        .get('/api/tour/get')
+        .post('/api/tour/get/', null,
+        { 
+          headers: { 'Authorization': `Bearer ${localStorage.token}`} })
         .then(response => {
+          console.log(response.data);
           this.tournaments = response.data;
+          console.log(this.tournaments);
         })
         .catch(error => {
           console.error('Ошибка при получении турниров', error);
@@ -88,7 +93,7 @@ export default {
       const data = { token, name: this.tournamentName };
       
       axios
-        .post('/api/tour/register', data, { headers })
+        .post('/api/tour/register/', data, { headers })
         .then(response => {
           // Обработка успешного создания турнира
           console.log('Турнир успешно создан', response.data);
@@ -99,9 +104,10 @@ export default {
           console.error('Ошибка при создании турнира', error);
         });
     },
-    goToTournament(tourId) {
-      this.$router.push({ name: 'grid', query: { tourId } });
-      console.log('Переход к турниру с ID:', tourId);
+    goToTournament(tour_id) {
+      localStorage.tourId = tour_id;
+      console.log('Tour id', tour_id);
+      this.$router.push('/grid');
     },
   },
 };

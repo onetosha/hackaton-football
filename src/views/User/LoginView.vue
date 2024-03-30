@@ -70,7 +70,7 @@ export default {
           const token = response.data.token;
           localStorage.userName = response.data.username;
           localStorage.setItem('token', token);
-          console.log('Успешный вход', response.data);
+          console.log('Успешный вход', localStorage.token);
         })
         .catch(error => {
           console.error('Ошибка входа', error);
