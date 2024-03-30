@@ -71,6 +71,7 @@ export default {
           localStorage.userName = response.data.username;
           localStorage.setItem('token', token);
           console.log('Успешный вход', localStorage.token);
+          this.$router.push('/tournaments');
         })
         .catch(error => {
           console.error('Ошибка входа', error);
