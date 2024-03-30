@@ -10,11 +10,11 @@
               {{ getStageLabel(index) }}
             </div>
             <div class="match" v-for="match in round" :key="match.id">
-              <div class="team">
-                <input type="text" v-model="match.team1" :placeholder="'Команда ' + (match.id * 2 - 1)" />
+              <div class="user">
+                <input type="text" v-model="match.user1" :placeholder="'Команда ' + (match.id * 2 - 1)" />
               </div>
-              <div class="team">
-                <input type="text" v-model="match.team2" :placeholder="'Команда ' + (match.id * 2)" />
+              <div class="user">
+                <input type="text" v-model="match.user2" :placeholder="'Команда ' + (match.id * 2)" />
               </div>
               <div class="result">
                 <input type="text" v-model="match.result1" placeholder="Счет команды 1" />
@@ -39,17 +39,17 @@
     },
     methods: {
       generateTournament() {
-        const teams = ['Team A', 'Team B', 'Team C', 'Team D', 'Team E', 'Team F', 'Team G', 'Team H'];
-        const numRounds = Math.ceil(Math.log2(teams.length));
+        const users = ['User A', 'User B', 'User C', 'User D', 'User E', 'User F', 'User G', 'User H'];
+        const numRounds = Math.ceil(Math.log2(users.length));
   
         for (let round = 0; round < numRounds; round++) {
           const matches = [];
   
-          for (let i = 0; i < teams.length / Math.pow(2, round + 1); i++) {
+          for (let i = 0; i < users.length / Math.pow(2, round + 1); i++) {
             const match = {
               id: i + 1,
-              team1: teams[i * 2] || '',
-              team2: teams[i * 2 + 1] || '',
+              user1: users[i * 2] || '',
+              user2: users[i * 2 + 1] || '',
               result1: '',
               result2: '',
             };
@@ -79,7 +79,7 @@
   .card {
     width: 1000px;
     height: 80%;
-    margin-top: 5%;
+    margin-top: 3%;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -123,9 +123,10 @@
     gap: 10px;
     border: 1px solid gray;
     padding: 10px;
+    background-color: aqua;
   }
   
-  .team {
+  .user {
     font-size: 24px;
     font-weight: 600;
   }

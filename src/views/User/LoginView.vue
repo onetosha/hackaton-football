@@ -94,7 +94,7 @@ export default {
 }
 
 .title {
-  font-size: 24px;
+  font-size: 36px;
   color: #4CAF50;
   margin-bottom: 16px;
 }
@@ -109,7 +109,7 @@ export default {
 
 .link {
   color: #4CAF50;
-  font-size: 14px;
+  font-size: 21px;
 }
 
 .link:hover {

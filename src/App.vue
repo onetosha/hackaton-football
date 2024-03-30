@@ -3,22 +3,25 @@
     <div class="page-background"></div>
 
     <v-app-bar app>
-      <v-toolbar-title>ФутBIG Настольный Футбол</v-toolbar-title>
+      <v-toolbar-title style="font-size: 28px;">
+        <v-icon>
+          <img src="@/assets/logo.svg" alt="Icon"/>
+        </v-icon>
+        ФутBIG Настольный Футбол
+      </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn text to="/tournaments">Турниры</v-btn>
-        <template v-if="userName">
-          <v-menu offset-y>
-            <template v-slot:activator="{ on }">
-              <v-btn v-on="on" text>{{ userName }}</v-btn>
+        <v-btn text to="/tournaments" style="color: #4CAF50;">Турниры</v-btn>
+        <v-menu v-if="userName">
+            <template v-slot:activator="{ props }">
+              <v-btn v-bind="props" style="color: #4CAF50;">{{ userName }}</v-btn>
             </template>
             <v-list>
-              <v-list-item @click="logout">Выйти</v-list-item>
+              <v-list-item  @click="logout" link>Выйти</v-list-item>
             </v-list>
           </v-menu>
-        </template>
         <template v-else>
-          <v-btn text to="/">Войти</v-btn>
+          <v-btn text to="/" style="color: #4CAF50;">Войти</v-btn>
         </template>
       </v-toolbar-items>
     </v-app-bar>
@@ -39,17 +42,26 @@ export default {
     };
   },
   mounted() {
-    window.addEventListener('scroll', this.parallaxBackground);
+    window.addEventListener('mousemove', this.parallaxBackground);
     this.checkUser();
   },
   beforeDestroy() {
-    window.removeEventListener('scroll', this.parallaxBackground);
+    window.removeEventListener('mousemove', this.parallaxBackground);
   },
   methods: {
-    parallaxBackground() {
-      const scrollPosition = window.pageYOffset;
+    parallaxBackground(event) {
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      const offsetX = 0.008;
       const backgroundElement = document.querySelector('.page-background');
-      backgroundElement.style.transform = `translateY(-${scrollPosition * 0.4}px)`;
+      const offsetXValue = (event.clientX - windowWidth / 2) * offsetX;
+      const offsetYValue = (event.clientY - windowHeight / 2) * offsetX;
+
+      const maxOffset = 50;
+      const limitedOffsetXValue = Math.max(-maxOffset, Math.min(maxOffset, offsetXValue));
+      const limitedOffsetYValue = Math.max(-maxOffset, Math.min(maxOffset, offsetYValue));
+
+      backgroundElement.style.transform = `translate(${limitedOffsetXValue}px, ${limitedOffsetYValue}px)`;
     },
     checkUser() {
       const storedUserName = localStorage.getItem('userName');
@@ -72,11 +84,12 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 110%;
+  height: 110%;
   background-image: url('/src/assets/background2.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: center center;
+  overflow: hidden;
 }
 
 body {
@@ -87,7 +100,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: black;
   font-family: 'Handjet', sans-serif;
 }
 

@@ -115,7 +115,7 @@ export default {
 
 <style scoped>
 .title {
-  font-size: 24px;
+  font-size: 36px;
   color: #4CAF50;
   margin-bottom: 16px;
 }
